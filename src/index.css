@@ -1,0 +1,243 @@
+@import 'katex/dist/katex.min.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 250 250 249;
+  --panel: 255 255 255;
+  --sunk: 244 244 243;
+  --line: 226 226 222;
+  --ink: 28 30 36;
+  --mute: 104 108 120;
+  --accent: 51 92 196;
+  --good: 22 128 82;
+  --bad: 200 45 60;
+  --warn: 180 110 10;
+  --obj: 214 115 20;
+  --opt: 220 38 85;
+  --feas: 70 120 220;
+  --dual: 13 140 140;
+  color-scheme: light;
+}
+.dark {
+  --bg: 16 18 23;
+  --panel: 24 27 33;
+  --sunk: 31 34 42;
+  --line: 52 56 66;
+  --ink: 232 233 236;
+  --mute: 150 155 168;
+  --accent: 125 160 250;
+  --good: 74 200 140;
+  --bad: 245 100 110;
+  --warn: 240 180 70;
+  --obj: 248 160 70;
+  --opt: 250 90 130;
+  --feas: 110 155 250;
+  --dual: 60 200 200;
+  color-scheme: dark;
+}
+
+html,
+body {
+  @apply bg-bg text-ink antialiased;
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+.katex {
+  font-size: 1.06em;
+}
+.katex-display {
+  margin: 0.6em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+
+@layer components {
+  .card {
+    @apply rounded-lg border border-line bg-panel;
+  }
+  .btn {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-line bg-panel px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:bg-sunk focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-accent bg-accent px-3 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50 dark:text-[#0d1020];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-sm text-mute transition-colors hover:bg-sunk hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent;
+  }
+  .input {
+    @apply rounded-md border border-line bg-panel px-2 py-1 text-sm text-ink outline-none focus:border-accent focus:ring-2 focus:ring-accent/20;
+  }
+  .chip {
+    @apply inline-flex items-center rounded border border-line px-1.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-mute;
+  }
+  .prose-body {
+    @apply font-serif text-[1.06rem] leading-relaxed text-ink;
+  }
+  .prose-body p {
+    @apply my-3;
+  }
+  .prose-body ul {
+    @apply my-3 list-disc pl-6;
+  }
+  .prose-body ol {
+    @apply my-3 list-decimal pl-6;
+  }
+  .prose-body li {
+    @apply my-1;
+  }
+  .prose-body strong {
+    @apply font-semibold;
+  }
+  .prose-body table {
+    @apply my-3 w-full border-collapse font-sans text-sm;
+  }
+  .prose-body th {
+    @apply border-b border-line px-2 py-1 text-left font-semibold;
+  }
+  .prose-body td {
+    @apply border-b border-line/60 px-2 py-1;
+  }
+  .label {
+    @apply text-xs font-medium uppercase tracking-wide text-mute;
+  }
+  .kbd {
+    @apply rounded border border-line bg-sunk px-1 font-mono text-[11px];
+  }
+}
+
+input[type='range'] {
+  accent-color: rgb(var(--accent));
+}
+
+.svg-plot text {
+  font-family: Inter, system-ui, sans-serif;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-in {
+  animation: fadein 0.25s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------- aid sheet */
+.aid-sheet {
+  overflow-x: auto;
+}
+.aid-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 8mm;
+  padding: 6mm 6.5mm;
+  background: #fff;
+  color: #111;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.15);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 7.85pt;
+  line-height: 1.24;
+}
+.aid-title {
+  font-weight: 700;
+  font-size: 9pt;
+  border-bottom: 1px solid #333;
+  margin-bottom: 1.8mm;
+  padding-bottom: 0.8mm;
+}
+.aid-cols {
+  column-count: 3;
+  column-gap: 3.6mm;
+}
+.aid-h {
+  font-weight: 700;
+  font-size: 8.3pt;
+  color: #1d3f91;
+  margin-bottom: 0.4mm;
+}
+.aid-body.prose-body {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 7.85pt;
+  line-height: 1.24;
+  color: #111;
+}
+.aid-body.prose-body p {
+  margin: 0.3mm 0;
+}
+.aid-body.prose-body ul {
+  margin: 0.3mm 0;
+  padding-left: 3mm;
+}
+.aid-body.prose-body li {
+  margin: 0;
+}
+.aid-body.prose-body table {
+  margin: 0.4mm 0;
+  font-size: 7.4pt;
+}
+.aid-body.prose-body th,
+.aid-body.prose-body td {
+  padding: 0.15mm 0.8mm;
+  border-color: #bbb;
+}
+.aid-body .katex {
+  font-size: 1em;
+}
+.aid-body .katex-display {
+  margin: 0.4mm 0;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  :root,
+  .dark {
+    --bg: 255 255 255;
+    --panel: 255 255 255;
+    --ink: 0 0 0;
+    --line: 200 200 200;
+  }
+  main {
+    padding: 0 !important;
+  }
+  main > div {
+    max-width: none !important;
+  }
+  .aid-page {
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+    height: 297mm;
+    overflow: hidden;
+  }
+  .aid-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}
